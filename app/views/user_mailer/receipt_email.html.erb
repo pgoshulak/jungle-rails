@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Receipt for Jungle order #<%= @order.id %></h1>
+    <p>
+      Thank you for shopping on Jungle.
+    </p>
+    <p>
+      Order total: <%= humanized_money_with_symbol Money.new(@order.total_cents) %>
+    </p>
+    <hr>
+    <ul>
+      <% @order.line_items.each do |i| %>
+        <li>
+          Qty <%= i.quantity %> | <%= i.product.name %>: <%= humanized_money_with_symbol Money.new(i.total_price_cents) %>
+        </li>
+      <% end %>
+    </ul>
+  </body>
+</html>

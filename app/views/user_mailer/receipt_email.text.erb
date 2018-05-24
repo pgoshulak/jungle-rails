@@ -1,0 +1,9 @@
+Receipt for Jungle order #<%= @order.id %>
+===========================================
+Thank you for shopping on Jungle
+Order total: <%= humanized_money_with_symbol Money.new(@order.total_cents) %>
+-------------------------------------------
+
+<% @order.line_items.each do |i| %>
+  Qty <%= i.quantity %> | <%= i.product.name %>: <%= humanized_money_with_symbol Money.new(i.total_price_cents) %>
+<% end %>
