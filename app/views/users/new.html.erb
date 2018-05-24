@@ -10,7 +10,7 @@
 
         <% if form.object.errors.any? %>
           <div class="alert alert-danger">
-            <strong>The following errors prevented saving:</strong>
+            <strong>The following errors prevented registering:</strong>
             <ul>
               <% form.object.errors.full_messages.each do |error| %>
                 <li><%= error %></li>
@@ -31,7 +31,7 @@
 
         <div class="form-group">
           <%= form.label :email %>
-          <%= form.text_field :email, class: 'form-control' %>
+          <%= form.email_field :email, class: 'form-control' %>
         </div>
         
         <div class="form-group">
