@@ -8,11 +8,11 @@
 
     <div class="row">
 
-      <div class="col-sm-4">
+      <div class="col-sm-3">
         <%= image_tag @product.image.url, class: 'main-img' %>
       </div>
 
-      <div class="col-sm-8">
+      <div class="col-sm-9">
         <dl class="dl-horizontal">
           <dt>Name</dt>
           <dd><%= @product.name %></dd>
@@ -26,6 +26,10 @@
       </div>
     </div>
 
+    <div class="row">
+      <h3>Customer reviews of <%= @product.name %></h3>
+      <%= render @product.reviews %>
+    </div>
   </article>
 
 </section>

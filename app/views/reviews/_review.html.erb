@@ -1,0 +1,7 @@
+  <span>
+    <% (1..review.rating).each do %>
+      <%= fa_icon "star" %>
+    <% end %>
+  </span>
+  <p><strong><%= review.user.first_name %> <%= review.user.last_name %></strong></p>
+  <p><%= review.description %></p>
