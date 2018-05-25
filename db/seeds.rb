@@ -21,8 +21,14 @@ end
 
 # Let's do this ...
 
+# Clear old tables in reverse-dependency order
+
+Review.destroy_all
 LineItem.destroy_all
 Order.destroy_all
+Product.destroy_all
+Category.destroy_all
+User.destroy_all
 
 ## CATEGORIES
 
@@ -35,8 +41,6 @@ cat3 = Category.find_or_create_by! name: 'Furniture'
 ## PRODUCTS
 
 puts "Re-creating Products ..."
-
-Product.destroy_all
 
 cat1.products.create!({
   name:  'Men\'s Classy shirt',
@@ -139,8 +143,6 @@ prod1 = cat3.products.create!({
 
 puts "Re-creating Users ..."
 
-User.destroy_all
-
 user1 = User.create!({
   first_name: Faker::Name.first_name,
   last_name: Faker::Name.last_name,
@@ -167,37 +169,35 @@ user3 = User.create!({
 
 puts "Re-creating product reviews ..."
 
-Review.destroy_all
-
 prod1.reviews.create!({
   user: user1,
   description: Faker::Hipster.paragraph(1, true, 4),
-  rating: Faker::Number.between(1, 10)
+  rating: Faker::Number.between(1, 5)
 })
 prod1.reviews.create!({
   user: user2,
   description: Faker::Hipster.paragraph(1, true, 4),
-  rating: Faker::Number.between(1, 10)
+  rating: Faker::Number.between(1, 5)
 })
 prod1.reviews.create!({
   user: user3,
   description: Faker::Hipster.paragraph(1, true, 4),
-  rating: Faker::Number.between(1, 10)
+  rating: Faker::Number.between(1, 5)
 })
 prod2.reviews.create!({
   user: user3,
   description: Faker::Hipster.paragraph(1, true, 4),
-  rating: Faker::Number.between(1, 10)
+  rating: Faker::Number.between(1, 5)
 })
 prod2.reviews.create!({
   user: user2,
   description: Faker::Hipster.paragraph(1, true, 4),
-  rating: Faker::Number.between(1, 10)
+  rating: Faker::Number.between(1, 5)
 })
 prod3.reviews.create!({
   user: user1,
   description: Faker::Hipster.paragraph(1, true, 4),
-  rating: Faker::Number.between(1, 10)
+  rating: Faker::Number.between(1, 5)
 })
 
 puts "DONE!"
