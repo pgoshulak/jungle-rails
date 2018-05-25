@@ -31,9 +31,15 @@ class ReviewsController < ApplicationController
   def destroy
     review = Review.find params[:id]
     product = review.product
-    review.destroy
-    flash[:success] = "Review successfully deleted"
-    redirect_to product
+
+    if current_user == review.user
+      review.destroy
+      flash[:success] = "Review successfully deleted"
+      redirect_to product
+    else
+      flash[:danger] = "You can only delete your own reviews"
+      redirect_to product
+    end
   end
 
   private
