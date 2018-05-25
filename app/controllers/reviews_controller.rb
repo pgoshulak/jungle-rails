@@ -1,5 +1,7 @@
 class ReviewsController < ApplicationController
 
+  before_filter :require_login, except: :index
+
   def index
     # Note: this route is included since Reviews#create may render 'products/show'
     # but with address bar pointing to /products/:id/reviews from the failed POST.
@@ -43,6 +45,13 @@ class ReviewsController < ApplicationController
       :rating,
       :description
     )
+  end
+
+  def require_login
+    unless current_user
+      flash[:danger] = "You must be logged in to perform this action"
+      redirect_to '/login'
+    end
   end
 
 end

@@ -27,7 +27,13 @@
     </div>
 
     <div class="row">
-      <%= render 'reviews/new' %>
+      <% if current_user %>
+        <%= render 'reviews/new' %>
+      <% else %>
+        <br>
+        <p>You must be logged in to post a product review</p>
+      <% end %>
+
       <h3>Customer reviews of <%= @product.name %></h3>
       <%= render(@product.reviews.order created_at: :desc) || "There are no product reviews yet" %>
     </div>
