@@ -1,4 +1,5 @@
 class Admin::CategoriesController < ApplicationController
+  include HttpAuthConcern
 
   def index
     @categories = Category.order(name: :asc).all
