@@ -1,3 +1,5 @@
+<h3>Post a review for <%= @product.name %></h3>
+<h5>Posting publicly as <%= current_user.first_name %> <%= current_user.last_name %></h5>
 <%= form_for [@product, @review] do |f| %>
 
   <div class="form-group">
@@ -5,7 +7,7 @@
     <%= f.select :rating, [5,4,3,2,1], class: 'form-control' %>
   </div>
   <div class="form-group">
-    <%= f.label :description %>
+    <%= f.label :description, "Review" %>
     <%= f.text_area :description, class: 'form-control' %>
   </div>
 

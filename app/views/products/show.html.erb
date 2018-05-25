@@ -27,8 +27,8 @@
     </div>
 
     <div class="row">
-      <h3>Customer reviews of <%= @product.name %></h3>
       <%= render 'reviews/new' %>
+      <h3>Customer reviews of <%= @product.name %></h3>
       <%= render(@product.reviews.order created_at: :desc) || "There are no product reviews yet" %>
     </div>
   </article>

@@ -1,7 +1,12 @@
   <span>
+    <% if review.user == current_user %>
+      <%= link_to fa_icon('trash'), review, class: 'btn btn-xs btn-outline btn-danger', method: :delete, data: { confirm: "Are you sure?" } %>
+    <% end %>
     <% (1..review.rating).each do %>
       <%= fa_icon "star" %>
     <% end %>
   </span>
   <p><strong><%= review.user.first_name %> <%= review.user.last_name %></strong></p>
   <p><%= review.description %></p>
+  <hr>
+
