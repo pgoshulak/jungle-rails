@@ -4,6 +4,13 @@
       <%= image_tag product.image.thumb, alt: product.name %>
       <h4><%= product.name %></h4>
     <% end %>
+    <% if product.reviews.any? %>
+      <small><p>
+        <%= pluralize product.reviews.size, 'review' %>
+        <br>
+        Average rating <%= product.reviews.average(:rating).round(1) %> / 5
+      </p></small>
+    <% end %>
   </header>
   <p class="description">
     <%= product.description %>
