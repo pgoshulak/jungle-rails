@@ -11,8 +11,6 @@ RSpec.describe User, type: :model do
       password_confirmation: "batpassword"
     }
 
-    empty_user = {}
-
     context "with a valid User" do
       it "creates a User successfully" do
         User.create valid_user
@@ -84,5 +82,33 @@ RSpec.describe User, type: :model do
   end
 
   describe ".authenticate_with_credentials" do
+    valid_user_2 = { first_name: "Peter",
+                    last_name: "Parker",
+                    email: "spiderman@marvel.com",
+                    password: "maryjane",
+                    password_confirmation: "maryjane" }
+
+    context "with correct credentials" do
+      it "returns the correct user instance" do
+        User.create valid_user_2
+        u = User.authenticate_with_credentials("spiderman@marvel.com", "maryjane")
+        expect(u).to be_a(User)
+        expect(u.email).to eq("spiderman@marvel.com")
+      end
+    end
+    
+    context "with incorrect credentials" do
+      it "fails when given wrong password" do
+        User.create valid_user_2
+        u = User.authenticate_with_credentials("spiderman@marvel.com", "emospiderman")
+        expect(u).to eq(nil)
+      end
+
+      it "fails when password missing" do
+        User.create valid_user_2
+        u = User.authenticate_with_credentials("spiderman@marvel.com", "")
+        expect(u).to eq(nil)
+      end
+    end
   end
 end
