@@ -16,6 +16,11 @@ RSpec.describe User, type: :model do
         User.create valid_user
         expect(User.count).to eq(1)
       end
+
+      it "downcases email address before save" do
+        User.create valid_user.merge({ email: "ALfreD@baTCaVe.COM" })
+        expect(User.first.email).to eq("alfred@batcave.com")
+      end
     end
 
     context "with an invalid password" do
@@ -92,6 +97,20 @@ RSpec.describe User, type: :model do
       it "returns the correct user instance" do
         User.create valid_user_2
         u = User.authenticate_with_credentials("spiderman@marvel.com", "maryjane")
+        expect(u).to be_a(User)
+        expect(u.email).to eq("spiderman@marvel.com")
+      end
+      
+      it "strips leading and trailing whitespace from email" do
+        User.create valid_user_2
+        u = User.authenticate_with_credentials("   spiderman@marvel.com   ", "maryjane")
+        expect(u).to be_a(User)
+        expect(u.email).to eq("spiderman@marvel.com")
+      end
+      
+      it "accepts upper and lower case emails" do
+        User.create valid_user_2
+        u = User.authenticate_with_credentials("SPIDERman@maRVEl.coM", "maryjane")
         expect(u).to be_a(User)
         expect(u.email).to eq("spiderman@marvel.com")
       end
