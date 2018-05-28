@@ -147,22 +147,22 @@ user1 = User.create!({
   first_name: Faker::Name.first_name,
   last_name: Faker::Name.last_name,
   email: 'qwe@qwe.qwe',
-  password: 'qwe',
-  password_confirmation: 'qwe'
+  password: 'qweqwe',
+  password_confirmation: 'qweqwe'
 })
 user2 = User.create!({
   first_name: Faker::Name.first_name,
   last_name: Faker::Name.last_name,
   email: 'asd@asd.asd',
-  password: 'asd',
-  password_confirmation: 'asd'
+  password: 'asdasd',
+  password_confirmation: 'asdasd'
 })
 user3 = User.create!({
   first_name: Faker::Name.first_name,
   last_name: Faker::Name.last_name,
   email: 'zxc@zxc.zxc',
-  password: 'zxc',
-  password_confirmation: 'zxc'
+  password: 'zxczxc',
+  password_confirmation: 'zxczxc'
 })
 
 ## Reviews
